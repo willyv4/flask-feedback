@@ -1,0 +1,30 @@
+{%extends 'base.html'%} {% block content %} {%for itm in user%}
+<div class="container" style="max-width: 800px">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-body">
+        <h3 class="card-title">{{itm.first_name}} {{itm.last_name}}</h3>
+        <h5 class="card-subtitle mb-2 text-muted">{{itm.username}}</h5>
+        <p class="card-text">{{itm.email}}</p>
+        <a href="/users/{{itm.username}}/feedback/add" class="btn btn-primary"
+          >Give feedback</a
+        >
+      </div>
+    </div>
+
+    {%for f in feed%}
+    <div class="card p-2 m-2">
+      <div class="card-body">
+        <h4 class="card-title">{{f.username}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{f.title}}</h6>
+        <p class="card-text">{{f.content}}</p>
+        {% if session['username'] == f.username %}
+        <a href="/feedback/{{f.id}}/update" class="card-link">update</a>
+        {%endif%}
+        <a href="/feedback/{{f.id}}/delete" class="card-link">delete </a>
+      </div>
+    </div>
+
+    {%endfor%} {%endfor%} {%endblock%}
+  </div>
+</div>

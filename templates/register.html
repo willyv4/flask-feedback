@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container card p-5 mt-5">
+  <div class="card-header">
+    <h1>Create an account</h1>
+    <span
+      ><small class="text-muted"
+        >already have an account<a href="/login"> Login</a></small
+      ></span
+    >
+  </div>
+  <form method="POST">
+    {{form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+    'hidden'%}
+    <p>
+      {{field.label}} {{ field(class_="form-control")}} {% for error in
+      field.errors %}
+      <span class="form-text text-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    {%endfor%}
+    <button class="btn btn-success" type="submit">register</button>
+  </form>
+</div>
+
+{% endblock %}
